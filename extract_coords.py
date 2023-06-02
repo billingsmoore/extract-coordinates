@@ -15,6 +15,12 @@ text = str(text).replace('\00', '')
 
 matches = re.findall(pattern, text)
 
+for i in range(len(matches)):
+    matches[i] = matches[i].split('/ ')
+
+
 with open("Output.csv", "w") as f:
     writer = csv.writer(f)
-    writer.writerows(zip(matches))
+    f.write('latitude, longitude\n')
+    for match in matches:
+        writer.writerow(match)
